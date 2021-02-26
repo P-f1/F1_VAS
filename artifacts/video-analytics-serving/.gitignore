@@ -1,0 +1,10 @@
+__pycache__/
+.vscode/
+.bash_history
+*.generated
+docker/openvino_base_environment.txt
+docker/Dockerfile.env
+docker/final.env
+models
+tests/results/**/*
+samples/lva_ai_extension/tests/results/**/*
