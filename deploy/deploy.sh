@@ -19,8 +19,7 @@ else
     mkdir -p ./$DeployType
 fi
 
-cp -R ../artifacts/*.yaml ./$DeployType
-cp -R ../artifacts/*.yml ./$DeployType
+cp -R ../artifacts/docker-compose.yml ./$DeployType
 
 cd ./$DeployType
 

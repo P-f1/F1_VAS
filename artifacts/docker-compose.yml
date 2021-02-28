@@ -1,0 +1,47 @@
+version: "3.6"
+
+#docker run -i --rm \
+#-v $EXT_HOME_DIR/projects/F1_VAS/build/video-analytics-serving/tools:/home/video-analytics-serving/tools \
+#-v $EXT_HOME_DIR/projects/F1_VAS/build/video-analytics-serving/models_list:/models_yml \
+#-v $EXT_HOME_DIR/projects/F1_VAS/build/video-analytics-serving:/output \
+#-v $EXT_HOME_DIR/projects/F1_VAS/build/video-analytics-serving:/home/video-analytics-serving/ \
+#-v /tmp:/tmp -v /dev:/dev \
+#-v $EXT_HOME_DIR/projects/F1_VAS/build/video-analytics-serving/models:/home/video-analytics-serving/models \
+#-v $EXT_HOME_DIR/projects/F1_VAS/build/video-analytics-serving/pipelines/gstreamer:/home/video-analytics-serving/pipelines \
+#--network=host \
+#--entrypoint /bin/bash \
+#--name openvino_ubuntu18_data_dev_2021.1 \
+#--privileged --user 0 openvino/ubuntu18_data_dev:2021.1
+
+services:
+  openvino_ubuntu18_data_dev_2021.1:
+    container_name: openvino_ubuntu18_data_dev_2021.1
+    image: openvino/ubuntu18_data_dev:2021.1
+    network_mode: host
+    privileged: true
+    user: "0"
+    volumes:
+    - ${EXT_HOME_DIR}/projects/F1_VAS/build/video-analytics-serving/tools:/home/video-analytics-serving/tools
+    - ${EXT_HOME_DIR}/projects/F1_VAS/build/video-analytics-serving/models_list:/models_yml
+    - ${EXT_HOME_DIR}/projects/F1_VAS/build/video-analytics-serving:/output
+    - ${EXT_HOME_DIR}/projects/F1_VAS/build/video-analytics-serving:/home/video-analytics-serving/
+    - /tmp:/tmp 
+    - /dev:/dev
+    - ${EXT_HOME_DIR}/projects/F1_VAS/build/video-analytics-serving/models:/home/video-analytics-serving/models
+    - ${EXT_HOME_DIR}/projects/F1_VAS/build/video-analytics-serving/pipelines/gstreamer:/home/video-analytics-serving/pipelines
+    command: >
+     bash -c "pip3 install -r /home/video-analytics-serving/tools/model_downloader/requirements.txt
+     && python3 -u /home/video-analytics-serving/tools/model_downloader --model-list /models_yml/models.list.yml --output /output
+     && tail -F dummy"
+    
+#docker build -f $EXT_HOME_DIR/projects/F1_VAS/build/video-analytics-serving/docker/Dockerfile.env \
+#--network=host \
+#--build-arg BASE=openvino/ubuntu18_runtime:2021.1 \
+#--build-arg FRAMEWORK=gstreamer \
+#--build-arg MODELS_PATH=models \
+#--build-arg MODELS_COMMAND=copy_models \
+#--build-arg PIPELINES_PATH=pipelines/gstreamer \
+#--build-arg PIPELINES_COMMAND=copy_pipelines \
+#--build-arg FINAL_STAGE=video-analytics-serving-service \
+#-t video-analytics-serving-gstreamer \
+#--target deploy $EXT_HOME_DIR/projects/F1_VAS/build/video-analytics-serving,
