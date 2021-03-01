@@ -3,9 +3,11 @@ version: "3.6"
 #docker run -i --rm -p 7080:8080 --name video-analytics-serving-gstreamer video-analytics-serving-gstreamer
 
 services:
-  video-analytics-serving-gstreamer:
-    container_name: video-analytics-serving-gstreamer
-    image: video-analytics-serving-gstreamer
+  video-analytics-serving:
+    container_name: video-analytics-serving
+    image: video-analytics-serving-${FRAMEWORK}
     network_mode: host
     ports:
       - 0.0.0.0:7080:8080
+    volumes:      
+      - /tmp:/tmp

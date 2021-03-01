@@ -8,10 +8,12 @@ echo "ProjectID = "$ProjectID
 echo "ServiceName = "$ServiceName
 echo "BuildFolder = "$BuildFolder
 echo "EXT_HOME_DIR = " $EXT_HOME_DIR
+echo "FRAMEWORK = " $FRAMEWORK
 
 pwd
 
-cp -R ../artifacts/video-analytics-serving ./
+ARTIFACTS_DIR=../artifacts
+cp -R $ARTIFACTS_DIR/video-analytics-serving ./
 
 DOCKERFILE_DIR=./video-analytics-serving/docker
 ENVIRONMENT_FILE_LIST=
@@ -44,11 +46,13 @@ fi
 docker build -f ./video-analytics-serving/docker/Dockerfile.env \
 	--network=host \
 	--build-arg BASE=openvino/ubuntu18_runtime:2021.1 \
-	--build-arg FRAMEWORK=gstreamer \
+	--build-arg FRAMEWORK=$FRAMEWORK \
 	--build-arg MODELS_PATH=models \
 	--build-arg MODELS_COMMAND=copy_models \
-	--build-arg PIPELINES_PATH=pipelines/gstreamer \
+	--build-arg PIPELINES_PATH=pipelines/$FRAMEWORK \
 	--build-arg PIPELINES_COMMAND=copy_pipelines \
 	--build-arg FINAL_STAGE=video-analytics-serving-service \
-	-t video-analytics-serving-gstreamer \
+	-t video-analytics-serving-$FRAMEWORK \
 	--target deploy ./video-analytics-serving
+	
+echo "FRAMEWORK="$FRAMEWORK > $ARTIFACTS_DIR/.env.f1
