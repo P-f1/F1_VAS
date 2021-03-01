@@ -42,13 +42,13 @@ if [ ! -z "$ENVIRONMENT_FILE_LIST" ]; then
 fi
 
 docker build -f ./video-analytics-serving/docker/Dockerfile.env \
---network=host \
---build-arg BASE=openvino/ubuntu18_runtime:2021.1 \
---build-arg FRAMEWORK=gstreamer \
---build-arg MODELS_PATH=models \
---build-arg MODELS_COMMAND=copy_models \
---build-arg PIPELINES_PATH=pipelines/gstreamer \
---build-arg PIPELINES_COMMAND=copy_pipelines \
---build-arg FINAL_STAGE=video-analytics-serving-service \
--t video-analytics-serving-gstreamer \
---target deploy ./video-analytics-serving
+	--network=host \
+	--build-arg BASE=openvino/ubuntu18_runtime:2021.1 \
+	--build-arg FRAMEWORK=gstreamer \
+	--build-arg MODELS_PATH=models \
+	--build-arg MODELS_COMMAND=copy_models \
+	--build-arg PIPELINES_PATH=pipelines/gstreamer \
+	--build-arg PIPELINES_COMMAND=copy_pipelines \
+	--build-arg FINAL_STAGE=video-analytics-serving-service \
+	-t video-analytics-serving-gstreamer \
+	--target deploy ./video-analytics-serving
