@@ -20,6 +20,7 @@ else
 fi
 
 cp -R ../artifacts/docker-compose.yml ./$DeployType
+cp -R ../artifacts/.env.f1 ./$DeployType
 
 cd ./$DeployType
 
@@ -29,5 +30,5 @@ if [[ -v TargetServer ]]; then
 	docker-compose -H "ssh://$Username@$TargetServer" up --build
 else
 	echo "Deploy Locally !!"
-	docker-compose up
+	docker-compose --env-file ./.env.f1 up
 fi
