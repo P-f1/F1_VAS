@@ -25,7 +25,8 @@ docker run -i --rm \
 	-v $EXT_HOME_DIR/projects/F1_VAS/build/video-analytics-serving/models_list:/models_yml \
 	-v $EXT_HOME_DIR/projects/F1_VAS/build/video-analytics-serving:/output \
 	-v $EXT_HOME_DIR/projects/F1_VAS/build/video-analytics-serving:/home/video-analytics-serving/ \
-	-v /tmp:/tmp -v /dev:/dev \
+	-v /tmp:/tmp \
+	-v /dev:/dev \
 	-v $EXT_HOME_DIR/projects/F1_VAS/build/video-analytics-serving/models:/home/video-analytics-serving/models \
 	-v $EXT_HOME_DIR/projects/F1_VAS/build/video-analytics-serving/pipelines/gstreamer:/home/video-analytics-serving/pipelines \
 	--network=host \
