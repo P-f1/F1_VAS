@@ -8,6 +8,6 @@ services:
     image: video-analytics-serving-${FRAMEWORK}
 #    network_mode: host
     ports:
-      - 0.0.0.0:7080:8080
+      - 0.0.0.0:8080:8080
     volumes:      
       - /tmp:/tmp
