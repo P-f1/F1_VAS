@@ -27,8 +27,8 @@ cd ./$DeployType
 if [[ -v TargetServer ]]; then
 	echo "Deploy Remotely !!"
 	#docker-compose --context $DockerContext up -d
-	docker-compose -H "ssh://$Username@$TargetServer" up --build
+	docker-compose -H "ssh://$Username@$TargetServer" up
 else
 	echo "Deploy Locally !!"
-	docker-compose --env-file ./.env.f1 up
+	docker-compose up
 fi
