@@ -12,7 +12,7 @@ echo "FRAMEWORK = " $FRAMEWORK
 
 VAS_DIR=../artifacts/video-analytics-serving
 
-cd $VAS
+cd $VAS_DIR
 
 pwd
 
