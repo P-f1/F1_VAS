@@ -10,8 +10,10 @@ echo "BuildFolder = "$BuildFolder
 echo "EXT_HOME_DIR = " $EXT_HOME_DIR
 echo "FRAMEWORK = " $FRAMEWORK
 
-pwd
-
 VAS_DIR=../artifacts/video-analytics-serving
+
+cd $VAS
+
+pwd
 
 ./samples/edgex_bridge/fetch_edgex.sh
