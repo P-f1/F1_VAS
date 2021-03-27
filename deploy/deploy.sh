@@ -16,36 +16,35 @@ echo $TargetServer
 #       Build EdgeX Bridge
 ################################
 
-VAS_DIR=../artifacts/video-analytics-serving
-
-cd $VAS_DIR
+cd ../artifacts/video-analytics-serving
 
 pwd
 
 ./samples/edgex_bridge/fetch_edgex.sh
 
-
 ################################
 #         Deploy VAS
 ################################
-#
-#if [ -d "./$DeployType" ] 
-#then
-#    rm -rf ./$DeployType/* 
-#else
-#    mkdir -p ./$DeployType
-#fi
 
-#cp -R ../artifacts/docker-compose.yml ./$DeployType
-#cp -R ../artifacts/.env.f1 ./$DeployType
+cd ../../deploy
 
-#cd ./$DeployType
+if [ -d "./$DeployType" ] 
+then
+    rm -rf ./$DeployType/* 
+else
+    mkdir -p ./$DeployType
+fi
 
-#if [[ -v TargetServer ]]; then
-#	echo "Deploy Remotely !!"
+cp -R ../artifacts/docker-compose.yml ./$DeployType
+cp -R ../artifacts/.env.f1 ./$DeployType
+
+cd ./$DeployType
+
+if [[ -v TargetServer ]]; then
+	echo "Deploy Remotely !!"
 	#docker-compose --context $DockerContext up -d
-#	docker-compose -H "ssh://$Username@$TargetServer" up
-#else
-#	echo "Deploy Locally !!"
-#	docker-compose up
-#fi
+	docker-compose -H "ssh://$Username@$TargetServer" up
+else
+	echo "Deploy Locally !!"
+	docker-compose up
+fi
