@@ -12,4 +12,4 @@ services:
     volumes:
       - /tmp:/tmp
       - /dev:/dev
-      - ${SOURCE_DIR}:/home/video-analytics-serving/
+      - ${SOURCE_DIR}/samples:/home/video-analytics-serving/samples
