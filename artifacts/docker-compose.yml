@@ -9,5 +9,7 @@ services:
 #    network_mode: host
     ports:
       - 0.0.0.0:8080:8080
-    volumes:      
+    volumes:
       - /tmp:/tmp
+      - /dev:/dev
+      - ${SOURCE_DIR}:/home/video-analytics-serving/
