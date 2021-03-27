@@ -13,3 +13,4 @@ services:
       - /tmp:/tmp
       - /dev:/dev
       - ${SOURCE_DIR}/samples:/home/video-analytics-serving/samples
+      - ${SOURCE_DIR}/edgex:/home/video-analytics-serving/edgex
