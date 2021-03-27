@@ -16,12 +16,13 @@ echo $TargetServer
 #       Build EdgeX Bridge
 ################################
 
-chmod -R a+wx ../artifacts/video-analytics-serving
 cd ../artifacts/video-analytics-serving
 
 pwd
 
 ./samples/edgex_bridge/fetch_edgex.sh
+
+chmod -R a+wx ./edgex
 
 ################################
 #         Deploy VAS
