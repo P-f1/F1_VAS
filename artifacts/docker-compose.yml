@@ -14,5 +14,5 @@ services:
       - /dev:/dev
       - ${SOURCE_DIR}/samples:/home/video-analytics-serving/samples
       - ${SOURCE_DIR}/edgex:/home/video-analytics-serving/edgex
-      - ${SOURCE_DIR}/models:/home/video-analytics-serving/models 
-      - ${SOURCE_DIR}/pipelines/gstreamer:/home/video-analytics-serving/pipelines
+#      - ${SOURCE_DIR}/models:/home/video-analytics-serving/models 
+#      - ${SOURCE_DIR}/pipelines/gstreamer:/home/video-analytics-serving/pipelines
