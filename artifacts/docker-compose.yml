@@ -3,16 +3,17 @@ version: "3.6"
 #docker run -i --rm -p 7080:8080 --name video-analytics-serving-gstreamer video-analytics-serving-gstreamer
 
 services:
-  video-analytics-serving:
-    container_name: video-analytics-serving
+  vaserving:
+    container_name: vaserving
     image: video-analytics-serving-${FRAMEWORK}
+    user: '1000'
     network_mode: host
 #    ports:
 #      - 0.0.0.0:8080:8080
     volumes:
       - /tmp:/tmp
       - /dev:/dev
-      - ${SOURCE_DIR}/samples:/home/video-analytics-serving/samples
-      - ${SOURCE_DIR}/edgex:/home/video-analytics-serving/edgex
-#      - ${SOURCE_DIR}/models:/home/video-analytics-serving/models 
+      - /home/ec2-user/vas/video-analytics-serving:/home/video-analytics-serving/
+      - /home/ec2-user/vas/video-analytics-serving/models:/home/video-analytics-serving/models
+      - /home/ec2-user/vas/video-analytics-serving/pipelines/gstreamer:/home/video-analytics-serving/pipelines 
 #      - ${SOURCE_DIR}/pipelines/gstreamer:/home/video-analytics-serving/pipelines
