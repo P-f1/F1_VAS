@@ -6,7 +6,7 @@ services:
   video-analytics-serving:
     container_name: video-analytics-serving
     image: video-analytics-serving-${FRAMEWORK}
-#    network_mode: host
+    network_mode: host
     ports:
       - 0.0.0.0:8080:8080
     volumes:
